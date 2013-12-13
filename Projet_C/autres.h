@@ -12,7 +12,7 @@ listes des fonctions
 int nombre_de_lignes(char* fichier);
 int strlen_manual(char* monStr);
 int compare(char a[], char b[]);
-char** fichier_to_char(char* file, int* nb);
+char** fichier_to_char(char* file, int nb);
 /**********
 fin de la liste
 **********/

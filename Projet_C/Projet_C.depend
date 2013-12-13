@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1385980233 source:c:\users\keeeeehk\desktop\projet c\projet c\projet_c\main.c
+1386941176 source:c:\users\keeeeehk\desktop\projet c\projet c\projet_c\main.c
 	<stdio.h>
 	<stdlib.h>
 	"Options.h"
@@ -7,10 +7,15 @@
 
 1385977792 c:\users\keeeeehk\desktop\projet c\projet c\projet_c\options.h
 
-1385980392 c:\users\keeeeehk\desktop\projet c\projet c\projet_c\autres.h
+1386939195 c:\users\keeeeehk\desktop\projet c\projet c\projet_c\autres.h
 
 1385977869 source:c:\users\keeeeehk\desktop\projet c\projet c\projet_c\option.c
 	"options.h"
+	<stdio.h>
+	<stdlib.h>
+
+1386940309 source:c:\users\keeeeehk\desktop\projet c\projet c\projet_c\autres.c
+	"autres.h"
 	<stdio.h>
 	<stdlib.h>
 

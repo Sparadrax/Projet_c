@@ -8,12 +8,11 @@ int main(int argc,char** argv)
     /************
     Verification nombres arguments
     ************/
-    if(argc < 2)
+    if(argc <= 2)
     {
         printf("Pas assez d'arguments");
         return 1;
     }
-
 
     /************
     liste Options
@@ -183,13 +182,74 @@ int main(int argc,char** argv)
         }
     }
 
-    char* file1 = argv[argument+1];
-    char* file2 = argv[argument+2];
 
+
+    //je définis les deux dernier arguments comme des types char;
+    char* file1 = argv[argument-2];
+    char* file2 = argv[argument-1];
+
+    //je vais chercher les nombres de lignes des deux fichiers
     int nombre_ligne_fichier1 = nombre_de_lignes(file1);
     int nombre_ligne_fichier2 = nombre_de_lignes(file2);
 
+    char** chaine1 = fichier_to_char(file1,nombre_ligne_fichier1);
+    char** chaine2 = fichier_to_char(file2,nombre_ligne_fichier2);
 
+printf("Diff of %s with %s:\n\n",file1,file2);
+
+	// i is the index of the line we're processing in chaine1.
+	int i;
+	// j is the index of the line we're processing in chaine2.
+	int j = 0;
+
+	//Process each line of chaine1 and do our job
+	for (i=0; i<nombre_ligne_fichier1; i++)
+	{
+		//Indicates if a matching line was found in chaine2 (true = 1)
+		int found = 0;
+		//Indicates the number of lines we've skipped in chaine2 before finding the matching line.
+		int skipped = 0;
+
+		//we process each line of chaine2 (starting from the j-th one)
+		//until we either find a matching line or the end of file
+		while (j<nombre_ligne_fichier2 && found == 0)
+		{
+			// Compare both lines
+			if(strcmp(chaine1[i], chaine2[j]) == 0)
+			{
+				found = 1;
+			}
+			else
+			{
+			    skipped++;
+			}
+			j++;
+		}
+
+		//Now process the result:
+		if (found == 1)
+		{
+			//Print lines we skipped (from j-skipped to j)
+			int a;
+			for (a=j-skipped;a<j;a++)
+			{
+				printf("> %s\n", chaine2[a-1]);
+			}
+            //Print the matched line
+			printf("= %s\n", chaine1[i]);
+
+
+
+		}
+		else
+		{
+			//Only print the line from chaine1, and rollback the
+			//index j because we'll have to read those lines again.
+			printf("< %s\n", chaine1[i]);
+			j = j-skipped;
+
+		}
+	}
 
     return 0;
 }
